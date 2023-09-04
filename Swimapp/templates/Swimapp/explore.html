@@ -7,7 +7,7 @@
         {% if request.user.is_authenticated %}
         {% else %}
         <div class="alert alert-primary text-align-center alert-dismissible fade show" role="alert">
-            You need to <a href="{% url 'mysite:login' %}">log in</a> to create your spot.
+            You need to <a href="{% url 'Swimapp:login' %}">log in</a> to create your spot.
             <button aria-label="Close" class="btn-close" data-bs-dismiss="alert" type="button"></button>
         </div>
         {% endif %}
@@ -75,7 +75,7 @@
             {% if spot.user_id == request.user.id and 'user_id' in request.GET %}
             <span class="btn-dlt-mdy">
             <!--                edit button-->
-            <a class="btn btn-success" href="{% url 'mysite:edit_swimming_spot' spot.id %}">
+            <a class="btn btn-success" href="{% url 'Swimapp:edit_swimming_spot' spot.id %}">
                 <svg class="bi bi-pencil-square" fill="currentColor" height="24"
                      viewBox="0 0 16 16" width="24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -84,7 +84,7 @@
                 </svg>
             </a>
                 <!--                delete button-->
-            <a class="btn btn-danger" href="{% url 'mysite:delete_spot' spot_id=spot.id %}">
+            <a class="btn btn-danger" href="{% url 'Swimapp:delete_spot' spot_id=spot.id %}">
                 <svg class="bi bi-trash" fill="currentColor" height="24" viewBox="0 0 16 16" width="24"
                      xmlns="http://www.w3.org/2000/svg">
                   <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>

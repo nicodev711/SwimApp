@@ -31,14 +31,14 @@ def register(request):
             new_user.save()
             Profile.objects.create(user=new_user)
 
-            return render(request, 'swimapp/register_done.html', {'new_user': new_user})
+            return render(request, 'Swimapp/register_done.html', {'new_user': new_user})
     else:
         user_form = UserRegistrationForm()
     context = {
         'user_form': user_form,
         'year': current_year,
     }
-    return render(request, 'swimapp/register.html', context)
+    return render(request, 'Swimapp/register.html', context)
 
 
 @login_required
@@ -63,7 +63,7 @@ def edit(request):
         'profile_form': profile_form,
         'year': current_year
     }
-    return render(request, 'swimapp/edit.html', context)
+    return render(request, 'Swimapp/edit.html', context)
 
 
 def user_login(request):
@@ -136,7 +136,7 @@ def homepage(request):
         'spots': swimming_spots,
         'year': current_year
     }
-    return render(request, 'swimapp/homepage.html', context)
+    return render(request, 'Swimapp/homepage.html', context)
 
 
 def search_results(request):
@@ -153,7 +153,7 @@ def search_results(request):
         results = SwimmingSpot.objects.all()
 
     context = {'results': results}
-    return render(request, 'swimapp/search_results.html', context)
+    return render(request, 'Swimapp/search_results.html', context)
 
 
 def explore(request):
@@ -189,7 +189,7 @@ def explore(request):
         'categories': categories,
         'year': current_year,
     }
-    return render(request, 'swimapp/explore.html', context)
+    return render(request, 'Swimapp/explore.html', context)
 
 
 def spot_detail(request, spot):
@@ -229,7 +229,7 @@ def spot_detail(request, spot):
         'comment_form': comment_form,
         'year': current_year
     }
-    return render(request, 'swimapp/spot.html', context)
+    return render(request, 'Swimapp/spot.html', context)
 
 
 def edit_swimming_spot(request, spot_id):
@@ -248,7 +248,7 @@ def edit_swimming_spot(request, spot_id):
     else:
         form = SwimmingSpotForm(instance=swimming_spot)
 
-    return render(request, 'swimapp/edit_swimming_spot.html', {'form': form})
+    return render(request, 'Swimapp/edit_swimming_spot.html', {'form': form})
 
 
 @login_required
@@ -262,7 +262,7 @@ def delete_spot(request, spot_id):
     context = {
         'spot': spot
     }
-    return render(request, 'swimapp/confirm_delete.html', context)
+    return render(request, 'Swimapp/confirm_delete.html', context)
 
 
 @login_required
@@ -272,17 +272,17 @@ def my_spots(request):
     context = {
         'spots': spots,
     }
-    return render(request, 'swimapp/my_spots.html', context)
+    return render(request, 'Swimapp/my_spots.html', context)
 
 
 @login_required
 def community(request):
     feed_items = FeedItem.objects.order_by('-created')[:100]  # You might want to limit or filter the items
-    return render(request, 'swimapp/community.html', {'feed_items': feed_items})
+    return render(request, 'Swimapp/community.html', {'feed_items': feed_items})
 
 
 def about(request):
-    return render(request, 'swimapp/about.html')
+    return render(request, 'Swimapp/about.html')
 
 
 class SwimmingSpotListView(generics.ListCreateAPIView):

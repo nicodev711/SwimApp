@@ -9,18 +9,18 @@
                 <h5>Explore</h5>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
-                                                 href="{% url_with_query 'swimapp:explore' category=1 %}">River</a></li>
+                                                 href="{% url_with_query 'Swimapp:explore' category=1 %}">River</a></li>
                     <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
-                                                 href="{% url_with_query 'swimapp:explore' category=2 %}">Lake</a></li>
+                                                 href="{% url_with_query 'Swimapp:explore' category=2 %}">Lake</a></li>
                     <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
-                                                 href="{% url_with_query 'swimapp:explore' category=3 %}">Sea</a></li>
+                                                 href="{% url_with_query 'Swimapp:explore' category=3 %}">Sea</a></li>
                     <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
-                                                 href="{% url_with_query 'swimapp:explore' category=4 %}">Waterfall</a>
+                                                 href="{% url_with_query 'Swimapp:explore' category=4 %}">Waterfall</a>
                     </li>
                     <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
-                                                 href="{% url_with_query 'swimapp:explore' category=5 %}">Pool</a></li>
+                                                 href="{% url_with_query 'Swimapp:explore' category=5 %}">Pool</a></li>
                     <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
-                                                 href="{% url_with_query 'swimapp:explore' category=5 %}">Cave</a></li>
+                                                 href="{% url_with_query 'Swimapp:explore' category=5 %}">Cave</a></li>
                 </ul>
             </div>
 
@@ -28,15 +28,15 @@
                 <h5>Maps</h5>
                 <ul class="nav flex-column">
                     {% if request.user.is_authenticated %}
-                    <li><a class="dropdown-item" href="{% url 'swimapp:explore' %}?user_id={{ user.id }}">My Spots</a>
+                    <li><a class="dropdown-item" href="{% url 'Swimapp:explore' %}?user_id={{ user.id }}">My Spots</a>
                     </li>
                     <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
-                                                 href="{% url 'swimapp:explore' %}?user_id={{ user.id }}">Create spot</a>
+                                                 href="{% url 'Swimapp:explore' %}?user_id={{ user.id }}">Create spot</a>
                     </li>
                     {% else %}
-                    <li><a class="dropdown-item" href="{% url 'swimapp:explore' %}">My Spots</a></li>
+                    <li><a class="dropdown-item" href="{% url 'Swimapp:explore' %}">My Spots</a></li>
                     <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
-                                                 href="{% url 'swimapp:explore' %}">Create spot</a>
+                                                 href="{% url 'Swimapp:explore' %}">Create spot</a>
                     </li>
                     {% endif %}
 
@@ -53,7 +53,7 @@
             <div class="col-6 col-md-2 mb-3">
                 <h5>Company</h5>
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary" href="{% url 'mysite:about' %}">About</a></li>
+                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary" href="{% url 'Swimapp:about' %}">About</a></li>
 <!--                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary" href="#">Jobs</a></li>-->
 <!--                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary" href="#">Press</a></li>-->
 <!--                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary" href="#">Ambassadors</a></li>-->

@@ -5,7 +5,7 @@ from django.views.decorators.cache import cache_page
 from . import views
 from .views import *
 
-app_name = 'swimapp'
+app_name = 'Swimapp'
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
@@ -19,8 +19,8 @@ urlpatterns = [
     path('subscribe/', subscribe_newsletter, name='subscribe_newsletter'),
     path('about/', views.about, name='about'),
 
-    path('login/', auth_views.LoginView.as_view(next_page='swimapp:homepage'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='swimapp:homepage'), name='logout'),
+    path('login/', auth_views.LoginView.as_view(next_page='Swimapp:homepage'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='Swimapp:homepage'), name='logout'),
 
     path('password-change/',
          auth_views.PasswordChangeView.as_view(success_url=reverse_lazy('swimapp:password_change_done')),
