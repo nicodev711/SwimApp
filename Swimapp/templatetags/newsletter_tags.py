@@ -1,5 +1,5 @@
 from django import template
-from mysite.forms import SubscriberForm
+from Swimapp.forms import SubscriberForm
 
 register = template.Library()
 

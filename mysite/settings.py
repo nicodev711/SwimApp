@@ -38,7 +38,7 @@ SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
-    # 'swimapp.apps.SwimappConfig',
+    'Swimapp.apps.SwimappConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

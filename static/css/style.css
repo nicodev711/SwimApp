@@ -1,0 +1,412 @@
+/* Primary Color */
+
+:root {
+    /* Primary Color */
+    --primary-color: #198754;
+
+    /* Secondary Color */
+    --secondary-color: #F5F5DC;
+
+    /* Accent Color */
+    --accent-color: #147FAF;
+
+    /* Complementary Color */
+    --complementary-color: #FF9A8B;
+
+    /* Neutral Color */
+    --neutral-color: #707070;
+
+    /* Highlight Color */
+    --highlight-color: #FFD700;
+
+    /* Call-to-Action Color */
+    --cta-color: #FF5733;
+}
+
+
+/* Homepage Carousel */
+.carousel-item {
+    height: 500px;
+}
+
+.carousel-item > img {
+    margin-top: -500px;
+}
+
+.searchdiv {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.search-title {
+    color: white;
+    text-align: center;
+}
+
+.search-body {
+    background-color: white;
+    border-radius: 12px;
+    padding: 5px;
+}
+
+.search-body > svg {
+    margin-left: 5px;
+}
+
+.search-input {
+    margin: 0 5px 0 5px;
+    position: relative;
+    top: 2px;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    width: 300px;
+}
+
+/* Hereos Section */
+.hereos-city {
+    color: black;
+}
+
+.horizontal-scroll {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    flex-direction: row;
+}
+
+.hereos-cards {
+    flex: 0 0 auto;
+    color: black;
+    width: 280px;
+    margin: 0px 20px 30px 0;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 280px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* Category Section*/
+.cat-wrap {
+    padding-top: 5rem;
+}
+
+.swim-img {
+    height: 150px;
+    width: 200px;
+    border-radius: 10px;
+    margin: 10px 0px;
+    padding: 0;
+}
+
+.image-link {
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+.image-link:hover {
+    transform: scale(1.125);
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+.swim-title {
+    position: relative;
+    top: -105px;
+    left: 0px;
+    z-index: 1;
+    color: white;
+}
+
+/* Category Section */
+.category {
+    background-color: beige;
+    padding-bottom: 50px;
+}
+
+/* Contribute Section */
+.contribute {
+    background-color: var(--neutral-color);
+    color: white;
+}
+
+/*explore map*/
+
+.map-container {
+    width: 100%; /* Set the width of the container */
+    height: 80vh; /* Set the height of the container */
+    position: relative; /* Required for proper positioning of the map */
+    margin-top: -5px;
+}
+
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-radius: 25px;
+}
+
+.spot-btn {
+    position: absolute;
+    bottom: -20px; /* Position at the bottom */
+    left: 50%; /* Position at the center horizontally */
+    transform: translateX(-50%); /* Center the buttons */
+}
+
+.hereos-cards-explore {
+    flex: 0 0 auto;
+    color: black;
+    width: 280px;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+#category-menu {
+    display: inline;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+    top: 35px;
+    right: -10px;
+
+
+}
+
+.btn-group > .River {
+    background-color: #3399FF;
+    color: white;
+}
+
+.btn-group > .River:hover {
+    background-color: #2974C7;
+    color: white;
+}
+
+.btn-group > .Lake {
+    background-color: #66CC99;
+    color: white;
+}
+
+.btn-group > .Lake:hover {
+    background-color: #4C9E7A;
+    color: white;
+}
+
+.btn-group > .Sea {
+    background-color: #004080;
+    color: white;
+}
+
+.btn-group > .Sea:hover {
+    background-color: #002966;
+    color: white;
+}
+
+.btn-group > .Waterfall {
+    background-color: #00A0C6;
+    color: white;
+}
+
+.btn-group > .Waterfall:hover {
+    background-color: #0089A9;
+    color: white;
+}
+
+.btn-group > .Pool {
+    background-color: #40E0D0;
+    color: white;
+}
+
+.btn-group > .Pool:hover {
+    background-color: #30B9A9;
+    color: white;
+}
+
+.btn-group > .Cave {
+    background-color: #008080;
+    color: white;
+}
+
+.btn-group > .Cave:hover {
+    background-color: #006666;
+    color: white;
+}
+
+/*style scrollable section in explore/*/
+.div-scrollable {
+    overflow-y: auto;
+    max-height: 80vh;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+.card-img-exp {
+    width: 100%;
+    height: 280px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+
+/*Write a review*/
+.orangy-fire {
+    fill: #FFA500; /* Or any other orangy fire color you prefer */
+    position: relative;
+    top: -2px;
+
+}
+
+.wrapper {
+    position: relative;
+
+    transform: translate(-50%, -50%) rotateY(180deg);
+    display: flex;
+}
+
+.wrapper input {
+    display: none;
+}
+
+.wrapper label {
+    display: block;
+    cursor: pointer;
+    width: 30px;
+}
+
+.wrapper label:before {
+    font-family: "Font Awesome 6 Free";
+    content: '\f005';
+    position: relative;
+    display: block;
+    font-size: 30px;
+    color: #FFA500;
+}
+
+.wrapper label:after {
+
+    content: '★';
+    position: absolute;
+    display: block;
+    font-size: 40px;
+    color: #FFA500;
+    bottom: -4px;
+    opacity: 0;
+    transition: .6s;
+}
+
+.wrapper label:hover:after, .wrapper label:hover ~ label:after, .wrapper input:checked ~ label:after {
+    opacity: 1;
+}
+
+.profile-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+
+/* Footer Section */
+.footer {
+    background-color: beige;
+}
+
+/* Media Queries */
+@media (max-width: 767px) {
+    /* Homepage Carousel */
+    .carousel-inner {
+        max-height: 300px;
+    }
+
+    .searchdiv {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+        width: 85%;
+    }
+
+    .search-input {
+        width: 75%;
+    }
+
+    /* Hereos Section */
+    .hereos-cards {
+        width: 160px;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 140px;
+        border-radius: 10px;
+        object-fit: cover;
+    }
+
+    /*Categories Section*/
+    .cat-wrap {
+        padding-top: 1rem;
+    }
+
+    .category {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .category > .col-5 .m-4 {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .swim-img {
+        height: 150px;
+        width: 200px;
+    }
+
+    .map-container {
+        height: 70vh; /* Set the height of the container */
+    }
+
+    .hereos-cards-explore {
+        width: 300px;
+        margin: 20px 0px;
+    }
+
+    .div-scrollable {
+        overflow-y: auto;
+        max-height: 50vh;
+    }
+
+    .card-img-exp {
+        width: auto;
+        height: 150px;
+        border-radius: 10px;
+        object-fit: cover;
+        overflow: hidden;
+    }
+}
+
+@media (min-width: 768px) {
+    /* Adjust styles for tablet and larger screens */
+    .carousel-inner {
+        max-height: 500px;
+    }
+
+    /* ... other responsive adjustments ... */
+}
