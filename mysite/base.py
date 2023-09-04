@@ -99,7 +99,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'Swimapp.wsgi.application'
+WSGI_APPLICATION = 'mysite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -199,3 +199,6 @@ EMAIL_HOST_USER = 'nicolasclabaut.development@gmail.com'
 EMAIL_HOST_PASSWORD = 'elgzmhxjzbbpxzry'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+STRIPE_PUBLISHABLE_KEY = "pk_test_51NmjaKKVJ83S7MAKcm4kLMjbVBwlAeCJwXJgLltzmwYuIEdXR2eFkqo7Clhn12C49AyKArxGWMJLuLyq12Np74Tt00yIvKqG2e"
+STRIPE_SECRET_KEY = 'sk_test_51NmjaKKVJ83S7MAK5BOhGQGw8DcxuC3se0kl5StG2B6JZcXR8xrtT1RGeszjgCe54ZaVBTcOdwURW21jHpDrrQ1T00EAxji0JH'

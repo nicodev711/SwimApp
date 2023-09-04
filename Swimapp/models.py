@@ -18,13 +18,26 @@ class FeedItem(models.Model):
         ordering = ['-created']
 
 
+class Plan(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=5, decimal_places=2)
+    stripe_plan_id = models.CharField(max_length=50, unique=True)
+
+
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     date_of_birth = models.DateField(blank=True, null=True)
     photo = models.ImageField(upload_to='users/%Y/%m/%d/', blank=True)
+    stripe_customer_id = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
         return f'Profile of {self.user.username}'
+
+
+class Subscription(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
+    subscription_id = models.CharField(max_length=50)
 
 
 class Category(models.Model):
