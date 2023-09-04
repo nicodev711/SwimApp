@@ -127,7 +127,29 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'mysite.authentication.EmailAuthBackend',
+    'Swimapp.authentication.EmailAuthBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+]
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1513787839374367'  # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '5f54b4ba0f19aaadf054eb39ef356937' # Facebook Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '9679203315-kug8u0ebtpioi67mthcstru16ka4h322.apps.googleusercontent.com'  # Google App ID
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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' # Google Secret
+
+SOCIAL_AUTH_PIPELINE = [
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.user.create_user',
+    'Swimapp.authentication.create_profile',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
 ]
 
 # Internationalization
