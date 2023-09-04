@@ -327,3 +327,7 @@ def subscribe_newsletter(request):
 def footer_newsletter_form():
     form = SubscriberForm()
     return {'footer_newsletter_form': form}
+
+
+def redirect_to_home(request):
+    return redirect('/')

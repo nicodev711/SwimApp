@@ -17,7 +17,6 @@ from django.contrib.messages import constants as message_constants
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
@@ -93,6 +92,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -100,11 +101,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Swimapp.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-
 
 
 # Password validation
@@ -133,11 +131,11 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SOCIAL_AUTH_FACEBOOK_KEY = '1513787839374367'  # Facebook App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = '5f54b4ba0f19aaadf054eb39ef356937' # Facebook Secret
+SOCIAL_AUTH_FACEBOOK_SECRET = '5f54b4ba0f19aaadf054eb39ef356937'  # Facebook Secret
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '9679203315-kug8u0ebtpioi67mthcstru16ka4h322.apps.googleusercontent.com'  # Google App ID
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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' # Google Secret
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'  # Google Secret
 
 SOCIAL_AUTH_PIPELINE = [
     'social_core.pipeline.social_auth.social_details',
@@ -162,7 +160,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -202,4 +199,3 @@ EMAIL_HOST_USER = 'nicolasclabaut.development@gmail.com'
 EMAIL_HOST_PASSWORD = 'elgzmhxjzbbpxzry'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-

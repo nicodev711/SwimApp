@@ -37,4 +37,6 @@ urlpatterns = [
 
     path('register/', views.register, name='register'),
     path('edit/', views.edit, name='edit'),
+
+    path('accounts/profile/', redirect_to_home, name='redirect_to_home'),
 ]
