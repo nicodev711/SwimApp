@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load newsletter_tags %}
+{% load crispy_forms_tags %}
+{% block content %}
+<main class="form-signin d-flex justify-content-center align-items-center vh-100">
+    <form class="text-center">
+        <h1 class="h1 mb-3 fw-normal">We are working on it</h1>
+        <h3 class="h3 mb-3 fw-normal">Subscribe to our newsletter to stay updated!</h3>
+        <div class="form-floating">
+            {% footer_newsletter_form %}
+        </div>
+    </form>
+</main>
+{% endblock %}

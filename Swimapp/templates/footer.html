@@ -1,0 +1,94 @@
+{% load static %}
+{% load custom_filters %}
+{% load newsletter_tags %}
+{% block footer %}
+<div class="container-fluid footer">
+    <footer class="py-5">
+        <div class="row">
+            <div class="col-6 col-md-2 mb-3">
+                <h5>Explore</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
+                                                 href="{% url_with_query 'mysite:explore' category=1 %}">River</a></li>
+                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
+                                                 href="{% url_with_query 'mysite:explore' category=2 %}">Lake</a></li>
+                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
+                                                 href="{% url_with_query 'mysite:explore' category=3 %}">Sea</a></li>
+                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
+                                                 href="{% url_with_query 'mysite:explore' category=4 %}">Waterfall</a>
+                    </li>
+                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
+                                                 href="{% url_with_query 'mysite:explore' category=5 %}">Pool</a></li>
+                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
+                                                 href="{% url_with_query 'mysite:explore' category=5 %}">Cave</a></li>
+                </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3">
+                <h5>Maps</h5>
+                <ul class="nav flex-column">
+                    {% if request.user.is_authenticated %}
+                    <li><a class="dropdown-item" href="{% url 'mysite:explore' %}?user_id={{ user.id }}">My Spots</a>
+                    </li>
+                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
+                                                 href="{% url 'mysite:explore' %}?user_id={{ user.id }}">Create spot</a>
+                    </li>
+                    {% else %}
+                    <li><a class="dropdown-item" href="{% url 'mysite:explore' %}">My Spots</a></li>
+                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
+                                                 href="{% url 'mysite:explore' %}">Create spot</a>
+                    </li>
+                    {% endif %}
+
+
+                    <hr/>
+                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
+                                                 href="{% url 'django.contrib.sitemaps.views.sitemap' %}">SiteMaps</a>
+                    </li>
+                    <!--                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary" href="#">FAQs</a></li>-->
+                    <!--                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary" href="#">About</a></li>-->
+                </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3">
+                <h5>Company</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary" href="{% url 'mysite:about' %}">About</a></li>
+<!--                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary" href="#">Jobs</a></li>-->
+<!--                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary" href="#">Press</a></li>-->
+<!--                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary" href="#">Ambassadors</a></li>-->
+<!--                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary" href="#">Affiliates</a></li>-->
+<!--                    <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary" href="#">Influencers</a></li>-->
+                </ul>
+            </div>
+
+            <div class="col-md-5 offset-md-1 mb-3">
+                <h5>Subscribe to our newsletter</h5>
+                <p>Monthly digest of what's new and exciting from us.</p>
+                {% footer_newsletter_form %}
+            </div>
+        </div>
+
+        <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+            <p>© {{ year }} Crazy Swim, Inc. All rights reserved.</p>
+            <ul class="list-unstyled d-flex">
+                <li class="ms-3"><a class="link-body-emphasis" href="#">
+                    <svg class="bi" height="24" width="24">
+                        <use xlink:href="#twitter"></use>
+                    </svg>
+                </a></li>
+                <li class="ms-3"><a class="link-body-emphasis" href="#">
+                    <svg class="bi" height="24" width="24">
+                        <use xlink:href="#instagram"></use>
+                    </svg>
+                </a></li>
+                <li class="ms-3"><a class="link-body-emphasis" href="#">
+                    <svg class="bi" height="24" width="24">
+                        <use xlink:href="#facebook"></use>
+                    </svg>
+                </a></li>
+            </ul>
+        </div>
+    </footer>
+</div>
+{% endblock %}

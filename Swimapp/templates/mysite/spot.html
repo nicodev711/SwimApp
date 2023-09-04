@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-5">
+            <h3>{{spot.title}}</h3>
+            <h6>Rate:{% if spot.average_rating < 1.12 %}
+                <svg class="bi bi-star orangy-fire" fill="currentColor" height="16" viewBox="0 0 16 16"
+                     width="16" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                </svg>
+                {{spot.average_rating}} ({{ spot.ratings.count }})
+                {% elif spot.average_rating > 3.75 %}
+
+                <svg class="bi bi-star-fill orangy-fire" fill="currentColor" height="16" viewBox="0 0 16 16"
+                     width="16" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                </svg>
+                {{spot.average_rating}} ({{ spot.ratings.count }})
+                {% else %}
+
+                <svg class="bi bi-star-half orangy-fire" fill="currentColor" height="16" viewBox="0 0 16 16"
+                     width="16" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5.354 5.119 7.538.792A.516.516 0 0 1 8 .5c.183 0 .366.097.465.292l2.184 4.327 4.898.696A.537.537 0 0 1 16 6.32a.548.548 0 0 1-.17.445l-3.523 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256a.52.52 0 0 1-.146.05c-.342.06-.668-.254-.6-.642l.83-4.73L.173 6.765a.55.55 0 0 1-.172-.403.58.58 0 0 1 .085-.302.513.513 0 0 1 .37-.245l4.898-.696zM8 12.027a.5.5 0 0 1 .232.056l3.686 1.894-.694-3.957a.565.565 0 0 1 .162-.505l2.907-2.77-4.052-.576a.525.525 0 0 1-.393-.288L8.001 2.223 8 2.226v9.8z"/>
+                </svg>
+                {{spot.average_rating|floatformat:"1"}} ({{ spot.ratings.count }})
+                {% endif %}
+<!--                <button class="btn btn-success btn-sm" data-bs-target="#ReviewModal" data-bs-toggle="modal"-->
+<!--                        type="button">-->
+<!--                    Write a Review-->
+<!--                </button>-->
+                </span>
+            </h6>
+
+            <div class="map-container2">
+                <div class="map" id="map1"></div>
+                <div class=" spot-btn">
+                    <!--                    review-->
+                    <button class="btn btn-success mx-2" data-bs-target="#ReviewModal" data-bs-toggle="modal"
+                            type="button">
+                        <svg class="bi bi-star" fill="currentColor" height="24" viewBox="0 0 16 16"
+                             width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>
+                        </svg>
+                    </button>
+                    <!--                        direction-->
+                    <a class="btn btn-success mx-2" target="_blank" href="https://www.google.com/maps/dir/?api=1&destination={{ spot.latitude }},{{ spot.longitude }}">
+                        <svg class="bi bi-car-front-fill" fill="currentColor" height="24" viewBox="0 0 16 16"
+                             width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679c.033.161.049.325.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.807.807 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2H6ZM2.906 5.189a.51.51 0 0 0 .497.731c.91-.073 3.35-.17 4.597-.17 1.247 0 3.688.097 4.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 11.691 3H4.309a.5.5 0 0 0-.447.276L2.906 5.19Z"/>
+                        </svg>
+                    </a>
+                    <!--                    favourite-->
+                    <button class="btn btn-success mx-2" disabled>
+                        <svg class="bi bi-bookmark" fill="currentColor" height="24" viewBox="0 0 16 16"
+                             width="24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="spot-description">
+                {{spot.description}}
+            </div>
+
+        </div>
+        <div class="col-7">
+            {% if spot.images.all %}
+            <div class="carousel-container d-flex align-items-center">
+                <div class="carousel slide mb-6" data-bs-ride="carousel" id="myCarousel">
+                    <div class="carousel-inner">
+                        {% for image in spot.images.all %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <img alt="{{ spot.title }} image" src="{{ image.image.url }}"
+                                 style="height:100%; width:100%; margin:0">
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <button class="carousel-control-prev" data-bs-slide="prev" data-bs-target="#myCarousel" type="button">
+                    <span aria-hidden="true" class="carousel-control-prev-icon"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" data-bs-slide="next" data-bs-target="#myCarousel" type="button">
+                    <span aria-hidden="true" class="carousel-control-next-icon"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            {% else %}
+            <img alt="Placeholder" class="card-img-top" src="{% static 'images/Generic-Profile-Image.png' %}">
+            {% endif %}
+
+
+            <div>
+                {% for comment in comments %}
+                <div>
+                    <h5>{{comment.user}}</h5>
+                    <p><em>Posted: {{ comment.created|date:"j F, Y" }}</em></p>
+                    <p>{{comment.text}}</p>
+                    {% if comment.image %}
+                    <img alt="image from {{comment.user}}'s comment" class="comment-image"
+                         src="{{ comment.image.url }}">
+                    {% endif %}
+                </div>
+                <hr/>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div aria-hidden="true" aria-labelledby="ReviewModalLabel" class="modal fade" id="ReviewModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="ReviewModalLabel">Write a Review</h1>
+                    <button aria-label="Close" class="btn-close" data-bs-dismiss="modal" type="button"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="star-widget mt-4">
+                            <form enctype="multipart/form-data" method="post">
+                                {% csrf_token %}
+                                <div class="star-ratings">
+                                    <div class="wrapper">
+                                        <input id="rating-5" name="rating" type="radio" value="5">
+                                        <label class="bi bi-star" for="rating-5"></label>
+
+                                        <input id="rating-4" name="rating" type="radio" value="4">
+                                        <label class="bi bi-star" for="rating-4"></label>
+
+                                        <input id="rating-3" name="rating" type="radio" value="3">
+                                        <label class="bi bi-star" for="rating-3"></label>
+
+                                        <input id="rating-2" name="rating" type="radio" value="2">
+                                        <label class="bi bi-star" for="rating-2"></label>
+
+                                        <input id="rating-1" name="rating" type="radio" value="1">
+                                        <label class="bi bi-star" for="rating-1"></label>
+                                    </div>
+                                </div>
+                                {{ comment_form| crispy }}
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close
+                                    </button>
+                                    <button class="btn btn-primary" type="submit">Post Review</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    mapboxgl.accessToken = '{{ mapbox_access_token }}';
+    var long = '{{ spot.longitude }}';
+    var lat = '{{ spot.latitude }}';
+
+    // Initialize the map
+    var map = new mapboxgl.Map({
+        container: 'map1', // ID of the map container element
+        style: 'mapbox://styles/mapbox/streets-v12', // Map style
+        center: [long, lat], // Center coordinates [longitude, latitude]
+        zoom: 11 // Zoom level
+    });
+    new mapboxgl.Marker()
+        .setLngLat([long, lat])
+        .addTo(map);
+
+
+</script>
+
+
+{% endblock %}

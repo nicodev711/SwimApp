@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="text-center my-4">
+    <form class="mx-auto my-4" method="post">
+        {% csrf_token %}
+        <h2 class="h3 mb-3 fw-normal">Confirm Deletion</h2>
+        <p>Are you sure you want to delete the spot "{{ spot.title }}"?</p>
+        <div class="form-floating">
+            <button class="btn btn-danger" type="submit">Delete</button>
+            <a class="btn btn-secondary" href="{% url 'mysite:explore' %}">Cancel</a>
+        </div>
+    </form>
+</main>
+{% endblock %}
+
