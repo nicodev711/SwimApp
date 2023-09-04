@@ -2,7 +2,7 @@
 {% block navbar %}
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'mysite:homepage' %}">Crazy Swimming</a>
+        <a class="navbar-brand" href="{% url 'swimapp:homepage' %}">Crazy Swimming</a>
         <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
                 class="navbar-toggler"
                 data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
@@ -12,7 +12,7 @@
             <ul class="navbar-nav col-6 col-lg-2 mb-2 mb-lg-0">
                 <!-- First column with Explore and Community links -->
                 <li class="nav-item">
-                    <a aria-current="page" class="nav-link active" href="{% url 'mysite:explore' %}">Explore</a>
+                    <a aria-current="page" class="nav-link active" href="{% url 'swimapp:explore' %}">Explore</a>
                 </li>
 <!--                <li class="nav-item">-->
 <!--                    <a class="nav-link" href="{% url 'mysite:community' %}">Community</a>-->
@@ -29,11 +29,11 @@
                     <ul class="dropdown-menu">
 <!--                        <li><a class="dropdown-item disabled" href="#">My Favourites</a></li>-->
                         {% if request.user.is_authenticated %}
-                        <li><a class="dropdown-item" href="{% url 'mysite:explore' %}?user_id={{ user.id }}">My Spots</a></li>
-                        <li><a class="dropdown-item" href="{% url 'mysite:explore' %}?user_id={{ user.id }}">Create New Spot</a></li>
+                        <li><a class="dropdown-item" href="{% url 'swimapp:explore' %}?user_id={{ user.id }}">My Spots</a></li>
+                        <li><a class="dropdown-item" href="{% url 'swimapp:explore' %}?user_id={{ user.id }}">Create New Spot</a></li>
                         {% else %}
-                        <li><a class="dropdown-item" href="{% url 'mysite:explore' %}">My Spots</a></li>
-                        <li><a class="dropdown-item" href="{% url 'mysite:explore' %}">Create New Spot</a></li>
+                        <li><a class="dropdown-item" href="{% url 'swimapp:explore' %}">My Spots</a></li>
+                        <li><a class="dropdown-item" href="{% url 'swimapp:explore' %}">Create New Spot</a></li>
                         {% endif %}
 
                     </ul>

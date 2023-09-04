@@ -5,7 +5,7 @@ from django.views.decorators.cache import cache_page
 from . import views
 from .views import *
 
-app_name = 'mysite'
+app_name = 'swimapp'
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
@@ -19,16 +19,16 @@ urlpatterns = [
     path('subscribe/', subscribe_newsletter, name='subscribe_newsletter'),
     path('about/', views.about, name='about'),
 
-    path('login/', auth_views.LoginView.as_view(next_page='mysite:homepage'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='mysite:homepage'), name='logout'),
+    path('login/', auth_views.LoginView.as_view(next_page='swimapp:homepage'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='swimapp:homepage'), name='logout'),
 
     path('password-change/',
-         auth_views.PasswordChangeView.as_view(success_url=reverse_lazy('mysite:password_change_done')),
+         auth_views.PasswordChangeView.as_view(success_url=reverse_lazy('swimapp:password_change_done')),
          name='password_change'),
     path('password-change/done/', auth_views.PasswordChangeDoneView.as_view(), name='password_change_done'),
 
     path('password-reset/',
-         auth_views.PasswordResetView.as_view(success_url=reverse_lazy('mysite:password_reset_done')),
+         auth_views.PasswordResetView.as_view(success_url=reverse_lazy('swimapp:password_reset_done')),
          name='password_reset'),
     path('password-reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('password-reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(),

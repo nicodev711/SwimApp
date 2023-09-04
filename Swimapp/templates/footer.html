@@ -9,18 +9,18 @@
                 <h5>Explore</h5>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
-                                                 href="{% url_with_query 'mysite:explore' category=1 %}">River</a></li>
+                                                 href="{% url_with_query 'swimapp:explore' category=1 %}">River</a></li>
                     <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
-                                                 href="{% url_with_query 'mysite:explore' category=2 %}">Lake</a></li>
+                                                 href="{% url_with_query 'swimapp:explore' category=2 %}">Lake</a></li>
                     <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
-                                                 href="{% url_with_query 'mysite:explore' category=3 %}">Sea</a></li>
+                                                 href="{% url_with_query 'swimapp:explore' category=3 %}">Sea</a></li>
                     <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
-                                                 href="{% url_with_query 'mysite:explore' category=4 %}">Waterfall</a>
+                                                 href="{% url_with_query 'swimapp:explore' category=4 %}">Waterfall</a>
                     </li>
                     <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
-                                                 href="{% url_with_query 'mysite:explore' category=5 %}">Pool</a></li>
+                                                 href="{% url_with_query 'swimapp:explore' category=5 %}">Pool</a></li>
                     <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
-                                                 href="{% url_with_query 'mysite:explore' category=5 %}">Cave</a></li>
+                                                 href="{% url_with_query 'swimapp:explore' category=5 %}">Cave</a></li>
                 </ul>
             </div>
 
@@ -28,15 +28,15 @@
                 <h5>Maps</h5>
                 <ul class="nav flex-column">
                     {% if request.user.is_authenticated %}
-                    <li><a class="dropdown-item" href="{% url 'mysite:explore' %}?user_id={{ user.id }}">My Spots</a>
+                    <li><a class="dropdown-item" href="{% url 'swimapp:explore' %}?user_id={{ user.id }}">My Spots</a>
                     </li>
                     <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
-                                                 href="{% url 'mysite:explore' %}?user_id={{ user.id }}">Create spot</a>
+                                                 href="{% url 'swimapp:explore' %}?user_id={{ user.id }}">Create spot</a>
                     </li>
                     {% else %}
-                    <li><a class="dropdown-item" href="{% url 'mysite:explore' %}">My Spots</a></li>
+                    <li><a class="dropdown-item" href="{% url 'swimapp:explore' %}">My Spots</a></li>
                     <li class="nav-item mb-2"><a class="nav-link p-0 text-body-secondary"
-                                                 href="{% url 'mysite:explore' %}">Create spot</a>
+                                                 href="{% url 'swimapp:explore' %}">Create spot</a>
                     </li>
                     {% endif %}
 
