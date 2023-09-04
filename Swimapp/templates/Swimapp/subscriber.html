@@ -1,4 +1,4 @@
-<form method="post" action="{% url 'mysite:subscribe_newsletter' %}">
+<form method="post" action="{% url 'Swimapp:subscribe_newsletter' %}">
     {% csrf_token %}
     <div class="d-flex flex-column flex-sm-row w-100 gap-2">
         {{ form.email }}

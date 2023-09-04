@@ -93,7 +93,6 @@ def user_login(request):
 
 def homepage(request):
     current_year = datetime.datetime.now().year
-    user_ip = request.META.get('REMOTE_ADDR')
     ipinfo_token = '4a8c2d33243761'
 
     # Get IP information
@@ -104,15 +103,9 @@ def homepage(request):
 
     user_lat = None
     user_long = None
-    # if ip_data:
-    #     user_lat = ip_data.latitude
-    #     user_long = ip_data.longitude
-
     if ip_data:
-        # Extract latitude and longitude if available
-        location = ip_data.get('loc', '').split(',')
-        if len(location) == 2:
-            user_lat, user_long = float(location[0]), float(location[1])
+        user_lat = ip_data.latitude
+        user_long = ip_data.longitude
 
     swimming_spots = SwimmingSpot.objects.all()
 

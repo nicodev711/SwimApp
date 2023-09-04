@@ -27,7 +27,7 @@
     <div class="searchdiv">
         <h1 class="search-title">Find your spot</h1>
         <div class="search-body">
-            <form action="{% url 'mysite:search_results' %}" method="GET">
+            <form action="{% url 'Swimapp:search_results' %}" method="GET">
                 <span>
                     <input class="search-input" name="query" placeholder="Search by spots name or category" type="text">
                     <button class="btn btn-success" id="searchButton" type="submit">Search</button>
@@ -39,7 +39,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="hereos mt-4">
-            <h4 id="hereosTitle">Favourite Spots near <a class="hereos-city" href="{% url 'mysite:explore' %}">
+            <h4 id="hereosTitle">Favourite Spots near <a class="hereos-city" href="{% url 'Swimapp:explore' %}">
                 {{ ip_data.city }}</a></h4>
         </div>
         <div class="row">
@@ -96,7 +96,7 @@
             <div class="my-5">
                 <h4>Spots that fit your nature</h4>
                 <p>Whether you’re pushing your limits or pushing a stroller, we've got you covered.</p>
-                <a class="btn btn-success btn-lg" href="{% url 'mysite:register' %}" type="button">Sign up</a>
+                <a class="btn btn-success btn-lg" href="{% url 'Swimapp:register' %}" type="button">Sign up</a>
             </div>
         </div>
         <div class="col-7">
@@ -170,7 +170,7 @@
         </div>
         <div class="row mt-4">
             <div class="col-12 col-md m-4">
-                <a class="btn btn-success btn-lg" href="{% url 'mysite:register' %}" type="button">Get SwimWild+ and
+                <a class="btn btn-success btn-lg" href="{% url 'Swimapp:register' %}" type="button">Get SwimWild+ and
                     give back</a>
             </div>
         </div>
