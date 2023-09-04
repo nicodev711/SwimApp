@@ -3,6 +3,7 @@ import os
 
 import ipinfo
 import requests
+import stripe
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
@@ -331,3 +332,51 @@ def footer_newsletter_form():
 
 def redirect_to_home(request):
     return redirect('/')
+
+
+@login_required
+def list_plans(request):
+    plans = Plan.objects.all()
+    return render(request, 'Swimapp/subscription_plans.html', {'plans': plans})
+
+
+@login_required
+def subscribe(request, plan_id):
+    plan = Plan.objects.get(pk=plan_id)
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+
+    if request.method == 'POST':
+        payment_form = PaymentForm(request.POST)
+        if payment_form.is_valid():
+            # Check if the user has a default payment method
+            if not request.user.profile.stripe_customer_id:
+                # If the user doesn't have a Stripe customer ID, create one
+                customer = stripe.Customer.create(email=request.user.email)
+                request.user.profile.stripe_customer_id = customer.id
+                request.user.profile.save()
+
+            # Get the Stripe payment token from the form
+            stripe_token = request.POST.get('stripe_token')
+
+            if stripe_token:
+                # Subscribe the customer to the selected plan using the payment token
+                subscription = stripe.Subscription.create(
+                    customer=request.user.profile.stripe_customer_id,
+                    items=[{'price': plan.API_ID}],
+                    default_payment_method=stripe_token,
+                )
+
+                return redirect('subscription_success')
+            else:
+                # Handle the case where 'stripe_token' is not present in the form data
+                # You can add error handling or display a message to the user
+                error_message = "Payment token is missing. Please try again."
+                context = {'plan': plan, 'error_message': error_message}
+                return render(request, 'Swimapp/subscription_signup.html', context)
+
+    context = {
+        'plan': plan,
+        'payment_form': payment_form,
+    }
+
+    return render(request, 'Swimapp/subscription_signup.html', context)

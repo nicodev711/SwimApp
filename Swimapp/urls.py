@@ -19,6 +19,9 @@ urlpatterns = [
     path('subscribe/', subscribe_newsletter, name='subscribe_newsletter'),
     path('about/', views.about, name='about'),
 
+    path('plans/', views.list_plans, name='list_plans'),
+    path('subscribe/<int:plan_id>/', views.subscribe, name='subscribe'),
+
     path('login/', auth_views.LoginView.as_view(next_page='Swimapp:homepage'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='Swimapp:homepage'), name='logout'),
 

@@ -161,3 +161,24 @@ class SubscriberForm(forms.ModelForm):
                 'placeholder': 'Email address',
             }),
         }
+
+
+class PaymentForm(forms.Form):
+    stripe_token = forms.CharField(widget=forms.HiddenInput(), required=False)
+    card_number = forms.CharField(
+        label='Card Number',
+        widget=forms.TextInput(attrs={'placeholder': 'Card number'}),
+        required=True
+    )
+
+    expiration_date = forms.CharField(
+        label='Expiration Date',
+        widget=forms.TextInput(attrs={'placeholder': 'MM / YY'}),
+        required=True
+    )
+
+    cvc = forms.CharField(
+        label='CVC',
+        widget=forms.TextInput(attrs={'placeholder': 'CVC'}),
+        required=True
+    )

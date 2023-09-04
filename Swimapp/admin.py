@@ -50,3 +50,16 @@ class CategoryAdmin(admin.ModelAdmin):
 class ImageAdmin(admin.ModelAdmin):
     list_display = ['id', 'swimming_spot']
     search_fields = ['swimming_spot']
+
+
+@admin.register(Plan)
+class PlanAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price')
+    search_fields = ('name',)
+
+
+@admin.register(Subscription)
+class SubscriptionAdmin(admin.ModelAdmin):
+    list_display = ('user', 'plan')
+    list_filter = ('plan',)
+    search_fields = ('user__username', 'plan__name')
