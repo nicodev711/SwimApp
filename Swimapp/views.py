@@ -340,43 +340,44 @@ def list_plans(request):
     return render(request, 'Swimapp/subscription_plans.html', {'plans': plans})
 
 
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
 @login_required
 def subscribe(request, plan_id):
     plan = Plan.objects.get(pk=plan_id)
-    stripe.api_key = settings.STRIPE_SECRET_KEY
+    stripe_publishable = settings.STRIPE_PUBLISHABLE_KEY
 
     if request.method == 'POST':
-        payment_form = PaymentForm(request.POST)
-        if payment_form.is_valid():
-            # Check if the user has a default payment method
-            if not request.user.profile.stripe_customer_id:
-                # If the user doesn't have a Stripe customer ID, create one
-                customer = stripe.Customer.create(email=request.user.email)
-                request.user.profile.stripe_customer_id = customer.id
-                request.user.profile.save()
+        # Check if the user has a Stripe customer ID
+        if not request.user.profile.stripe_customer_id:
+            # If the user doesn't have a Stripe customer ID, create one
+            customer = stripe.Customer.create(email=request.user.email)
+            request.user.profile.stripe_customer_id = customer.id
+            request.user.profile.save()
 
-            # Get the Stripe payment token from the form
-            stripe_token = request.POST.get('stripe_token')
+        # Stripe checkout session data
+        session_data = {
+            'payment_method_types': ['card'],
+            'mode': 'subscription',
+            'client_reference_id': request.user.profile.stripe_customer_id,
+            'line_items': [
+                {
+                    'price': plan.stripe_plan_id,  # Replace with the actual Stripe Price ID
+                },
+            ],
+            'success_url': request.build_absolute_uri(reverse('Swimapp:completed')),
+            'cancel_url': request.build_absolute_uri(reverse('Swimapp:canceled')),
+        }
 
-            if stripe_token:
-                # Subscribe the customer to the selected plan using the payment token
-                subscription = stripe.Subscription.create(
-                    customer=request.user.profile.stripe_customer_id,
-                    items=[{'price': plan.API_ID}],
-                    default_payment_method=stripe_token,
-                )
+        # Create a Stripe checkout session
+        session = stripe.checkout.Session.create(**session_data)
 
-                return redirect('subscription_success')
-            else:
-                # Handle the case where 'stripe_token' is not present in the form data
-                # You can add error handling or display a message to the user
-                error_message = "Payment token is missing. Please try again."
-                context = {'plan': plan, 'error_message': error_message}
-                return render(request, 'Swimapp/subscription_signup.html', context)
+        # Redirect to Stripe Checkout page
+        return redirect(session.url, code=303)
+    else:
+        context = {
+            'plan': plan,
+            'stripe_publishable': stripe_publishable,
+        }
 
-    context = {
-        'plan': plan,
-        'payment_form': payment_form,
-    }
-
-    return render(request, 'Swimapp/subscription_signup.html', context)
+        return render(request, 'Swimapp/subscription_signup.html', context)
